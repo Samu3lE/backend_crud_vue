@@ -111,8 +111,7 @@ if(isset($request["search"])){
       if($rowCount > 0){
 
         $employees = $stmt->fetchAll( PDO::FETCH_OBJ );
-        $response['body'] = json_encode($employees);
-        echo json_encode($employees);
+        return json_encode($employees);
         exit();
       }else{
         echo json_encode(["success"=>0]);
