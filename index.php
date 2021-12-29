@@ -11,13 +11,8 @@
             $dbname=$_ENV['DB_NAME'];
             $port=$_ENV['DB_PORT'];
         
-                //Set DSN data source name
-                $dsn = "pgsql:host=" . $host . ";port=" . $port .";dbname=" . $dbname . ";user=" . $user . ";password=" . $password . ";";
 
-                //         //create a pdo instance
-    
-
-          echo $dsn;
+          
     } catch (\Throwable $th) {
         echo $th;
     }
