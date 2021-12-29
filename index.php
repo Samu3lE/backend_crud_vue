@@ -112,7 +112,7 @@ if(isset($request["search"])){
 
         $employees = $stmt->fetchAll( PDO::FETCH_OBJ );
         $response['body'] = json_encode($employees);
-        echo json_encode($employees);
+        echo $response;
         return $response;
           exit();
       }else{
