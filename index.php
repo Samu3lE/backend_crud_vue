@@ -112,9 +112,8 @@ if(isset($request["search"])){
 
         $employees = $stmt->fetchAll( PDO::FETCH_OBJ );
         $response['body'] = json_encode($employees);
-        echo $response['body'];
-        return $response;
-          exit();
+        echo json_encode($employees);
+        exit();
       }else{
         echo json_encode(["success"=>0]);
         http_response_code(404);
