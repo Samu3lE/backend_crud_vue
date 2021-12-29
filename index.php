@@ -7,5 +7,5 @@ require("./vendor/autoload.php");
         $dbname=$_ENV['DB_NAME'];
         $port=$_ENV['DB_PORT'];
  
-echo "Hello there heroku, samuel Here!";
+echo $host;
 ?>
