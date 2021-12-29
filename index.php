@@ -11,7 +11,7 @@
             $dbname=$_ENV['DB_NAME'];
             $port=$_ENV['DB_PORT'];
         
-        echo $dotenv;
+        echo $host;
     } catch (\Throwable $th) {
         echo $th;
     }
