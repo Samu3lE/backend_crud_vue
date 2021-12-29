@@ -111,13 +111,14 @@ if(isset($request["search"])){
       if($rowCount > 0){
 
         $employees = $stmt->fetchAll( PDO::FETCH_OBJ );
-        return json_encode($employees);
-        exit();
+        http_response_code(404);
+        echo json_encode($employees);
+        
       }else{
         echo json_encode(["success"=>0]);
         http_response_code(404);
       }
-
+      exit();
 }else{
     http_response_code(404);
 
