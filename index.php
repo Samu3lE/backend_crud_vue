@@ -1,9 +1,15 @@
 <?php
     require("./vendor/autoload.php");
+    
+    header("Access-Control-Allow-Origin: *");
+    header("Content-Type: application/json; charset=UTF-8");
+    header("Access-Control-Allow-Methods: OPTIONS,GET,POST,PUT,DELETE");
+    header("Access-Control-Max-Age: 3600");
+    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
     try {
-        // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-        //     $dotenv->load();
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+            $dotenv->load();
 
             $host = $_ENV['DB_HOST'];
             $user=$_ENV['DB_USER'];
