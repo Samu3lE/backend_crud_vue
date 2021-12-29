@@ -1,5 +1,5 @@
 <?php
-    require("./vendor/autoload.php");
+    require("../vendor/autoload.php");
 
     try {
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
