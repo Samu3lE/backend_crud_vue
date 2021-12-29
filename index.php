@@ -36,24 +36,27 @@ if(isset($request["search"])){
   
     if($rowCount > 0){
         $employees = $stmt->fetch();
+        http_response_code(200);
         echo json_encode($employees);
-        exit();
+        
     }else{
         echo json_encode(["success"=>0]);
         http_response_code(404);
     }
+    exit();
 }else if(isset($request["delete"])){
     $employees_sql= "DELETE FROM employee WHERE id={$_GET['delete']}";
     $stmt = $pdo->prepare($employees_sql);
     $success=$stmt->execute();
     
     if($success){
+        http_response_code(200);
         echo json_encode(["success"=>1]);
-        exit();
     }else{
         echo json_encode(["success"=>0]);
         http_response_code(404);
     }
+    exit();
 }else if(isset($request["create"])){
     $data = json_decode(file_get_contents("php://input"));
     $name = $data->name;
@@ -65,6 +68,7 @@ if(isset($request["search"])){
         $success=$stmt->execute();
         
         if($success){
+            http_response_code(200);
             echo json_encode(["success"=>1]);
             
         }else{
@@ -75,7 +79,8 @@ if(isset($request["search"])){
     }else{
         echo json_encode(["success"=>0]);
         http_response_code(404);
-     } exit();
+     }
+      exit();
     
 }else if(isset($request["update"])){
     $data = json_decode(file_get_contents("php://input"));
@@ -89,6 +94,7 @@ if(isset($request["search"])){
         $success=$stmt->execute();
         
         if($success){
+            http_response_code(200);
             echo json_encode(["success"=>1]);
             
         }else{
