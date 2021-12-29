@@ -2,8 +2,8 @@
     require("./vendor/autoload.php");
 
     try {
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-            $dotenv->load();
+        // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        //     $dotenv->load();
 
             $host = $_ENV['DB_HOST'];
             $user=$_ENV['DB_USER'];
