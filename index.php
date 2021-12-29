@@ -1,11 +1,18 @@
 <?php
-require("./vendor/autoload.php");
+    require("./vendor/autoload.php");
 
-        $host = $_ENV['DB_HOST'];
-        $user=$_ENV['DB_USER'];
-        $password=$_ENV['DB_PASSWORD'];
-        $dbname=$_ENV['DB_NAME'];
-        $port=$_ENV['DB_PORT'];
- 
-echo $host;
+    try {
+        $dotenv = Dotenv\Dotenv::createImmutable('./');
+            $dotenv->load();
+
+            $host = $_ENV['DB_HOST'];
+            $user=$_ENV['DB_USER'];
+            $password=$_ENV['DB_PASSWORD'];
+            $dbname=$_ENV['DB_NAME'];
+            $port=$_ENV['DB_PORT'];
+        
+        echo $dotenv;
+    } catch (\Throwable $th) {
+        echo $th;
+    }
 ?>
