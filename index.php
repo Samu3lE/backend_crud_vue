@@ -12,7 +12,9 @@
             $port=$_ENV['DB_PORT'];
         
 
-          
+            $dsn = "pgsql:host=" . $host . ";port=" . $port .";dbname=" . $dbname . ";user=" . $user . ";password=" . $password . ";";
+
+            echo $dsn;
     } catch (\Throwable $th) {
         echo $th;
     }
