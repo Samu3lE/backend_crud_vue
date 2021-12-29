@@ -28,80 +28,106 @@ try{
   $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  echo $dsn;
-
 }
 catch (PDOException $e) {
         echo 'Connection failed: ' . $e->getMessage();
 }
    
-// $request = $_GET;
+$request = $_GET;
 
-// if(isset($request["search"])){
-//     $employees_sql= "SELECT * FROM employee WHERE id={$_GET['search']}";
+if(isset($request["search"])){
+    $employees_sql= "SELECT * FROM employee WHERE id={$_GET['search']}";
 
-//   $stmt = $pdo->prepare($employees_sql);
-//   $stmt->execute();
-//   $rowCount = $stmt->rowCount();
-//   echo $rowCount;
-//     if($rowCount > 0){
-//         $employees = $stmt->fetch();
-//         echo json_encode($employees);
-//         exit();
-//     }else{
-//         echo json_encode(["success"=>0]);
-//     }
-// }else if(isset($request["delete"])){
-//     $employees_sql= mysqli_query($db_conection,"DELETE FROM employee WHERE id={$_GET['delete']}");
-//     if($employees_sql){
-//         echo json_encode(["success"=>1]);
-//         exit();
-//     }else{
-//         echo json_encode(["success"=>0]);
-//     }
-// }else if(isset($request["create"])){
-//     $data = json_decode(file_get_contents("php://input"));
-//     $name = $data->name;
-//     $email= $data->email;
-//     if(($email!="")&&($name!="")){
-//         $employees_sql= mysqli_query($db_conection,"INSERT INTO employee (name,email) VALUES ('{$name}','{$email}') ");
-//         echo json_encode(["success"=>1]);
-//     }
-//     exit();
-// }else if(isset($request["update"])){
-//     $data = json_decode(file_get_contents("php://input"));
-//     $id=(isset($data->id))?$data->id:$_GET["update"];
-//     $name=$data->name;
-//     $email=$data->email;
+  $stmt = $pdo->prepare($employees_sql);
+  $stmt->execute();
+  $rowCount = $stmt->rowCount();
+  
+    if($rowCount > 0){
+        $employees = $stmt->fetch();
+        echo json_encode($employees);
+        exit();
+    }else{
+        echo json_encode(["success"=>0]);
+    }
+}else if(isset($request["delete"])){
+    $employees_sql= "DELETE FROM employee WHERE id={$_GET['delete']}";
+    $stmt = $pdo->prepare($employees_sql);
+    $success=$stmt->execute();
     
-//     if(($email!="")&&($name!="")){
-//         $employees_sql= mysqli_query($db_conection,"UPDATE employee SET name='{$name}',email='{$email}' WHERE id='{$id}'");
-//         echo json_encode(["success"=>1]);
-//     }else{
-//         echo json_encode(["success"=>0]);
-//     }
-//     exit();
-// }else if(isset($request["list"])){
+    if($success){
+        echo json_encode(["success"=>1]);
+        exit();
+    }else{
+        echo json_encode(["success"=>0]);
+    }
+}else if(isset($request["create"])){
+    $data = json_decode(file_get_contents("php://input"));
+    $name = $data->name;
+    $email= $data->email;
+    if(($email!="")&&($name!="")){
+        $employees_sql= "INSERT INTO employee (name,email) VALUES ('{$name}','{$email}') ";
+
+        $stmt = $pdo->prepare($employees_sql);
+        $success=$stmt->execute();
         
-//     $employees_sql= mysqli_query($db_conection,"SELECT * FROM employee");
+        if($success){
+            echo json_encode(["success"=>1]);
+            
+        }else{
+            echo json_encode(["success"=>0]);
+        }
+
+    }else{
+        echo json_encode(["success"=>0]);
+    }
+    exit();
     
-//     if(mysqli_num_rows($employees_sql) > 0){
-//         $employees = mysqli_fetch_all($employees_sql,MYSQLI_ASSOC);
-//         echo json_encode($employees);
-//         exit();
-//     }else{
-//         echo json_encode(["success"=>0]);
-//     }
+}else if(isset($request["update"])){
+    $data = json_decode(file_get_contents("php://input"));
+    $id=(isset($data->id))?$data->id:$_GET["update"];
+    $name=$data->name;
+    $email=$data->email;
+    
+    if(($email!="")&&($name!="")){
+        $employees_sql= "UPDATE employee SET name='{$name}',email='{$email}' WHERE id='{$id}'";
+        $stmt = $pdo->prepare($employees_sql);
+        $success=$stmt->execute();
+        
+        if($success){
+            echo json_encode(["success"=>1]);
+            
+        }else{
+            echo json_encode(["success"=>0]);
+        }
+    }else{
+        echo json_encode(["success"=>0]);
+    }
+    exit();
+}else if(isset($request["list"])){
+        
+    $employees_sql= "SELECT * FROM employee";
+    
+    $stmt = $pdo->prepare($employees_sql);
+    $stmt->execute();
+    $rowCount = $stmt->rowCount();
+    
+      if($rowCount > 0){
+          $employees = $stmt->fetch();
+          echo json_encode($employees);
+          exit();
+      }else{
+          echo json_encode(["success"=>0]);
+      }
 
-// }else{
-//     http_response_code(404);
+}else{
+    http_response_code(404);
 
-//     echo json_encode([
-//         "success" => 0,
-//         "message" => 'no se encontro la ruta',
-//     ]);
+    echo json_encode([
+        "success" => 0,
+        "message" => 'no se encontro la ruta',
+    ]);
 
-//     exit();
-// }
+    exit();
+}
 
 ?>
