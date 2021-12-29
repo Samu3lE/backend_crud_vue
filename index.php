@@ -13,7 +13,7 @@
         
 
             $dsn = "pgsql:host=" . $host . ";port=" . $port .";dbname=" . $dbname . ";user=" . $user . ";password=" . $password . ";";
-
+            $pdo = new PDO($dsn, $user, $password);
             echo $dsn;
     } catch (\Throwable $th) {
         echo $th;
