@@ -104,13 +104,13 @@ if(isset($request["search"])){
     
       if($rowCount > 0){
 
-        $employees = array();
-        while ($row = pg_fetch_assoc($stmt)) {
-           $employees[] = $row;
-        }
+          $employees = array();
 
+while ($row <= $stmt->fetch()) {
+    $employees[] = $row;
+    
+}
 
-          
           echo json_encode($employees);
           exit();
       }else{
