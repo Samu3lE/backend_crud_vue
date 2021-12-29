@@ -106,7 +106,7 @@ if(isset($request["search"])){
 
           $employees = array();
 
-while ($row <= $stmt->fetch()) {
+while ($row <= $rowCount) {
     $employees[] = $row;
     
 }
