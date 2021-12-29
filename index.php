@@ -104,12 +104,7 @@ if(isset($request["search"])){
     
       if($rowCount > 0){
 
-          $employees = array();
-
-while ($row <= $rowCount) {
-    $employees[] = $row;
-    
-}
+        $employees = $stmt->fetchAll( PDO::FETCH_OBJ );
 
           echo json_encode($employees);
           exit();
