@@ -2,11 +2,10 @@
     "info": {
         "_postman_id": "1d6175ab-06c1-4ae6-9de2-a5154384732f",
         "name": "API_Empleados",
-        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [{
-            "name": "https://crud-vue-test.herokuapp.com/?list",
-            "id": "518c6dc5-3776-4b32-b377-9c1e40f3b0dc",
+            "name": "list",
             "protocolProfileBehavior": {
                 "disableBodyPruning": true
             },
@@ -48,8 +47,7 @@
             "response": []
         },
         {
-            "name": "https://crud-vue-test.herokuapp.com/?delete=139",
-            "id": "d8ba2d78-dbd7-4610-ab5f-bc7a9b134707",
+            "name": "delete",
             "request": {
                 "method": "POST",
                 "header": [],
@@ -74,8 +72,7 @@
             "response": []
         },
         {
-            "name": "https://crud-vue-test.herokuapp.com/?search=77",
-            "id": "10692f86-ae01-4fc8-8577-e7bf67eea5a4",
+            "name": "search_by_id",
             "request": {
                 "method": "GET",
                 "header": [],
@@ -100,20 +97,13 @@
             "response": []
         },
         {
-            "name": "https://crud-vue-test.herokuapp.com/?create",
-            "id": "5c347cb9-96b7-4b31-92c2-6c8e88e67ca2",
+            "name": "update",
             "request": {
                 "method": "POST",
                 "header": [],
                 "body": {
                     "mode": "raw",
-                    "raw": "{ "
-                    id ":"
-                    6 ", "
-                    name ": "
-                    Sam_test_prueba ", "
-                    email ":"
-                    prueba_test @mail.com " }",
+                    "raw": "{\r\n    \"id\":\"6\",\r\n    \"name\": \"Sam_test_prueba\",\r\n    \"email\":\"prueba_test@mail.com\"\r\n}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -146,6 +136,40 @@
                         }
                     ]
                 }
+            },
+            "response": []
+        },
+        {
+            "name": "create",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"name\": \"Samuel_test_prueba\",\r\n    \"email\":\"prueba@mail.com\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://crud-vue-test.herokuapp.com/?create",
+                    "protocol": "https",
+                    "host": [
+                        "crud-vue-test",
+                        "herokuapp",
+                        "com"
+                    ],
+                    "path": [
+                        ""
+                    ],
+                    "query": [{
+                        "key": "create",
+                        "value": null
+                    }]
+                },
+                "description": "create new employee"
             },
             "response": []
         }
